@@ -24,7 +24,7 @@ export function handleC3Retired(event: C3Retired): void {
 
   entity.save()
 
-  let user = new User(event.transaction.from.toHexString());
+  let user = User.load(event.transaction.from.toHexString());
   if (!user) {
     user = new User(event.transaction.from.toHexString());
     user.totalCarbonRetired = BigInt.fromI32(0);
@@ -57,7 +57,7 @@ export function handleMossRetired(event: MossRetired): void {
 
   entity.save()
 
-  let user = new User(event.transaction.from.toHexString());
+  let user = User.load(event.transaction.from.toHexString());
   if (!user) {
     user = new User(event.transaction.from.toHexString());
     user.totalCarbonRetired = BigInt.fromI32(0);
@@ -90,7 +90,7 @@ export function handleToucanRetired(event: ToucanRetired): void {
 
   entity.save()
 
-  let user = new User(event.transaction.from.toHexString());
+  let user = User.load(event.transaction.from.toHexString());
   if (!user) {
     user = new User(event.transaction.from.toHexString());
     user.totalCarbonRetired = BigInt.fromI32(0);
