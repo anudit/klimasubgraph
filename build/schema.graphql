@@ -7,11 +7,12 @@ type User @entity {
 
 type Retirement @entity {
   id: ID!
+  tokenLabel: String!
   retiringAddress: Bytes!
   beneficiaryAddress: Bytes!
   beneficiaryString: String!
   retirementMessage: String!
   carbonPool: Bytes!
-  carbonToken: Bytes!
+  carbonToken: Bytes
   retiredAmount: BigInt!
 }

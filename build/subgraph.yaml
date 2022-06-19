@@ -24,3 +24,46 @@ dataSources:
             address,address,uint256)
           handler: handleC3Retired
       file: RetireC3Carbon\RetireC3Carbon.wasm
+  - kind: ethereum
+    name: RetireMossCarbon
+    network: matic
+    source:
+      address: "0xa35f62dbdb93e4B772784E89B7B35736A4aeaCc5"
+      abi: RetireMossCarbon
+      startBlock: 25476117
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Retirements
+        - User
+      abis:
+        - name: RetireMossCarbon
+          file: RetireMossCarbon\abis\RetireMossCarbon.json
+      eventHandlers:
+        - event: MossRetired(indexed address,indexed address,string,string,indexed address,uint256)
+          handler: handleMossRetired
+      file: RetireC3Carbon\RetireC3Carbon.wasm
+  - kind: ethereum
+    name: RetireToucanCarbon
+    network: matic
+    source:
+      address: "0xCefb61aF5325C0c100cBd77eb4c9F51d17B189Ca"
+      abi: RetireToucanCarbon
+      startBlock: 25476124
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Retirements
+        - User
+      abis:
+        - name: RetireToucanCarbon
+          file: RetireToucanCarbon\abis\RetireToucanCarbon.json
+      eventHandlers:
+        - event: ToucanRetired(indexed address,indexed address,string,string,indexed
+            address,address,uint256)
+          handler: handleToucanRetired
+      file: RetireC3Carbon\RetireC3Carbon.wasm

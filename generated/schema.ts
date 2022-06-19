@@ -79,12 +79,12 @@ export class Retirement extends Entity {
     super();
     this.set("id", Value.fromString(id));
 
+    this.set("tokenLabel", Value.fromString(""));
     this.set("retiringAddress", Value.fromBytes(Bytes.empty()));
     this.set("beneficiaryAddress", Value.fromBytes(Bytes.empty()));
     this.set("beneficiaryString", Value.fromString(""));
     this.set("retirementMessage", Value.fromString(""));
     this.set("carbonPool", Value.fromBytes(Bytes.empty()));
-    this.set("carbonToken", Value.fromBytes(Bytes.empty()));
     this.set("retiredAmount", Value.fromBigInt(BigInt.zero()));
   }
 
@@ -111,6 +111,15 @@ export class Retirement extends Entity {
 
   set id(value: string) {
     this.set("id", Value.fromString(value));
+  }
+
+  get tokenLabel(): string {
+    let value = this.get("tokenLabel");
+    return value!.toString();
+  }
+
+  set tokenLabel(value: string) {
+    this.set("tokenLabel", Value.fromString(value));
   }
 
   get retiringAddress(): Bytes {
@@ -158,13 +167,21 @@ export class Retirement extends Entity {
     this.set("carbonPool", Value.fromBytes(value));
   }
 
-  get carbonToken(): Bytes {
+  get carbonToken(): Bytes | null {
     let value = this.get("carbonToken");
-    return value!.toBytes();
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBytes();
+    }
   }
 
-  set carbonToken(value: Bytes) {
-    this.set("carbonToken", Value.fromBytes(value));
+  set carbonToken(value: Bytes | null) {
+    if (!value) {
+      this.unset("carbonToken");
+    } else {
+      this.set("carbonToken", Value.fromBytes(<Bytes>value));
+    }
   }
 
   get retiredAmount(): BigInt {
