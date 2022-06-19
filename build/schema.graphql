@@ -1,0 +1,17 @@
+type User @entity {
+  id: ID!
+  totalCarbonRetired: BigInt!
+  totalRetirements: BigInt!
+  retirements: [Retirement!]!
+}
+
+type Retirement @entity {
+  id: ID!
+  retiringAddress: Bytes!
+  beneficiaryAddress: Bytes!
+  beneficiaryString: String!
+  retirementMessage: String!
+  carbonPool: Bytes!
+  carbonToken: Bytes!
+  retiredAmount: BigInt!
+}
